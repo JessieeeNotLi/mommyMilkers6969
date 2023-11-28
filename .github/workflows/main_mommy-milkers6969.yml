@@ -42,10 +42,12 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     
     steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v3
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          name: .net-app
+          node-version: '16'
+
       
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
